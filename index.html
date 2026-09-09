@@ -1,0 +1,589 @@
+<title>Aakanksha Deshpande</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --bg:#f5f5f2;
+    --surface:#ffffff;
+    --surface-alt:#ecebe6;
+    --ink:#1b1f1e;
+    --ink-soft:#5b615f;
+    --ink-faint:#8b908d;
+    --accent:#b5691c;
+    --accent-ink:#ffffff;
+    --teal:#1f4e5f;
+    --line:#dedcd3;
+    --good:#3f7d52;
+    --pending:#b5691c;
+    --shadow: 0 1px 2px rgba(27,31,30,0.04), 0 8px 24px rgba(27,31,30,0.05);
+    --radius: 3px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#12181a;
+      --surface:#1a2123;
+      --surface-alt:#1f2729;
+      --ink:#eef0ee;
+      --ink-soft:#a6aeab;
+      --ink-faint:#727a77;
+      --accent:#e3a34e;
+      --accent-ink:#1a1204;
+      --teal:#7fb8c9;
+      --line:#2b3436;
+      --good:#6fbf88;
+      --pending:#e3a34e;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 28px rgba(0,0,0,0.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#12181a;
+    --surface:#1a2123;
+    --surface-alt:#1f2729;
+    --ink:#eef0ee;
+    --ink-soft:#a6aeab;
+    --ink-faint:#727a77;
+    --accent:#e3a34e;
+    --accent-ink:#1a1204;
+    --teal:#7fb8c9;
+    --line:#2b3436;
+    --good:#6fbf88;
+    --pending:#e3a34e;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 28px rgba(0,0,0,0.35);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:'IBM Plex Sans', system-ui, sans-serif;
+    font-size:16px; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Bricolage Grotesque', 'IBM Plex Sans', sans-serif;
+    font-weight:700; text-wrap:balance; margin:0;
+    letter-spacing:-0.01em;
+  }
+  .mono{ font-family:'IBM Plex Mono', ui-monospace, monospace; }
+  a{ color:inherit; }
+  .wrap{ max-width:1100px; margin:0 auto; padding:0 28px; }
+  .band{ border-bottom:1px solid var(--line); }
+  .band.alt{ background:var(--surface-alt); }
+  section{ padding:88px 0; }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; font-weight:500;
+    letter-spacing:0.14em; text-transform:uppercase; color:var(--accent);
+    display:flex; align-items:center; gap:10px; margin-bottom:16px;
+  }
+  .eyebrow::before{ content:""; width:22px; height:1px; background:var(--accent); display:block; }
+  .section-head{ max-width:640px; margin-bottom:48px; }
+  .section-head h2{ font-size:clamp(26px,3.4vw,34px); }
+  .section-head p{ color:var(--ink-soft); margin-top:12px; font-size:16px; max-width:60ch; }
+
+  /* ---------- nav ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{ display:flex; align-items:center; justify-content:space-between; height:66px; }
+  .nav-mark{ font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:17px; letter-spacing:-0.01em; }
+  .nav-mark .dot{ color:var(--accent); }
+  .nav-links{ display:flex; align-items:center; gap:28px; list-style:none; margin:0; padding:0; }
+  .nav-links a{
+    text-decoration:none; font-size:14.5px; color:var(--ink-soft); font-weight:500;
+    transition:color .15s ease;
+  }
+  .nav-links a:hover{ color:var(--ink); }
+  .nav-cta{
+    display:inline-flex; align-items:center; gap:8px; padding:8px 16px;
+    background:var(--ink); color:var(--bg); border-radius:var(--radius);
+    text-decoration:none; font-size:13.5px; font-weight:600;
+    font-family:'IBM Plex Mono',monospace;
+  }
+  .nav-toggle{ display:none; }
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex; align-items:center; gap:9px; padding:12px 20px;
+    border-radius:var(--radius); text-decoration:none; font-weight:600; font-size:14.5px;
+    font-family:'IBM Plex Mono',monospace; border:1px solid transparent; cursor:pointer;
+    transition:transform .15s ease, opacity .15s ease;
+  }
+  .btn:hover{ transform:translateY(-1px); }
+  .btn-primary{ background:var(--accent); color:var(--accent-ink); }
+  .btn-ghost{ background:transparent; color:var(--ink); border-color:var(--line); }
+  .btn-ghost:hover{ border-color:var(--ink-soft); }
+
+  /* ---------- hero ---------- */
+  .hero{ padding:76px 0 90px; }
+  .hero-grid{ display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center; }
+  .hero h1{ font-size:clamp(38px,5.4vw,58px); line-height:1.04; margin-top:14px; }
+  .hero .role{ font-size:clamp(17px,2vw,20px); color:var(--ink-soft); margin-top:18px; max-width:52ch; }
+  .hero .actions{ display:flex; flex-wrap:wrap; gap:12px; margin-top:32px; }
+  .stat-row{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:44px; }
+  .stat{
+    background:var(--surface); border:1px solid var(--line); border-top:2px solid var(--accent);
+    border-radius:var(--radius); padding:16px 14px; box-shadow:var(--shadow);
+  }
+  .stat .num{ font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:22px; font-variant-numeric:tabular-nums; }
+  .stat .lbl{ font-size:12px; color:var(--ink-soft); margin-top:4px; }
+
+  .pipeline-wrap{ display:flex; justify-content:center; }
+  .pipeline-wrap svg{ width:100%; height:auto; max-width:440px; }
+  .flow{ stroke-dasharray:6 8; animation:flow 2.2s linear infinite; }
+  @keyframes flow{ to{ stroke-dashoffset:-56; } }
+  @media (prefers-reduced-motion: reduce){ .flow{ animation:none; } }
+  .node-label{ font-family:'IBM Plex Mono',monospace; font-size:10.5px; fill:var(--ink-soft); }
+
+  /* ---------- about ---------- */
+  .about-body{ display:grid; grid-template-columns:1.3fr 0.7fr; gap:56px; }
+  .about-body p{ font-size:17px; color:var(--ink); max-width:66ch; }
+  .about-body p + p{ margin-top:16px; color:var(--ink-soft); }
+  .now-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    padding:22px; box-shadow:var(--shadow); align-self:start;
+  }
+  .now-card .eyebrow{ margin-bottom:10px; }
+  .now-card ul{ margin:0; padding-left:18px; color:var(--ink-soft); font-size:14.5px; }
+  .now-card li + li{ margin-top:8px; }
+
+  /* ---------- experience ---------- */
+  .timeline{ position:relative; padding-left:32px; }
+  .timeline::before{ content:""; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background:var(--line); }
+  .job{ position:relative; padding-bottom:44px; }
+  .job:last-child{ padding-bottom:0; }
+  .job::before{
+    content:""; position:absolute; left:-32px; top:5px; width:11px; height:11px; border-radius:50%;
+    background:var(--surface); border:2px solid var(--accent);
+  }
+  .job.minor::before{ border-color:var(--ink-faint); }
+  .job-head{ display:flex; flex-wrap:wrap; align-items:baseline; gap:10px; justify-content:space-between; }
+  .job-title{ font-size:19px; font-weight:700; font-family:'Bricolage Grotesque',sans-serif; }
+  .job-org{ color:var(--accent); font-weight:600; }
+  .job-dates{ font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--ink-faint); white-space:nowrap; }
+  .job ul{ margin:14px 0 0; padding-left:20px; color:var(--ink-soft); font-size:15px; }
+  .job li + li{ margin-top:8px; }
+
+  /* ---------- projects ---------- */
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+  .card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    padding:24px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:12px;
+  }
+  .card-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
+  .card h3{ font-size:18px; }
+  .pill{
+    font-family:'IBM Plex Mono',monospace; font-size:10.5px; font-weight:600; letter-spacing:.06em;
+    padding:4px 9px; border-radius:20px; white-space:nowrap; display:inline-flex; align-items:center; gap:6px;
+  }
+  .pill::before{ content:""; width:6px; height:6px; border-radius:50%; }
+  .pill.done{ background:color-mix(in srgb, var(--good) 14%, transparent); color:var(--good); }
+  .pill.done::before{ background:var(--good); }
+  .pill.plan{ background:color-mix(in srgb, var(--pending) 14%, transparent); color:var(--pending); }
+  .pill.plan::before{ background:var(--pending); }
+  .card-meta{ font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-faint); }
+  .card p{ font-size:14.5px; color:var(--ink-soft); margin:0; }
+  .tags{ display:flex; flex-wrap:wrap; gap:7px; margin-top:auto; padding-top:10px; }
+  .tag{
+    font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--ink-soft);
+    border:1px solid var(--line); border-radius:20px; padding:3px 10px;
+  }
+
+  /* ---------- skills ---------- */
+  .skill-groups{ display:grid; gap:26px; }
+  .skill-group h4{
+    font-family:'IBM Plex Mono',monospace; font-size:12.5px; text-transform:uppercase; letter-spacing:.08em;
+    color:var(--ink-faint); font-weight:600; margin:0 0 12px;
+  }
+  .chip-row{ display:flex; flex-wrap:wrap; gap:9px; }
+  .chip{
+    font-size:14px; padding:7px 14px; border-radius:20px; background:var(--surface);
+    border:1px solid var(--line); font-weight:500;
+  }
+
+  /* ---------- creds ---------- */
+  .grid-creds{ display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+  .cred-list{ display:flex; flex-direction:column; gap:14px; }
+  .cred{ display:flex; gap:14px; align-items:flex-start; }
+  .cred .yr{ font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--accent); white-space:nowrap; padding-top:2px; }
+  .cred .name{ font-weight:600; font-size:15px; }
+  .cred .sub{ color:var(--ink-soft); font-size:13.5px; margin-top:2px; }
+
+  /* ---------- contact ---------- */
+  .contact-grid{ display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center; }
+  .contact-grid h2{ font-size:clamp(28px,4vw,40px); }
+  .contact-links{ display:flex; flex-direction:column; gap:14px; margin-top:26px; }
+  .contact-links a{ display:flex; align-items:center; gap:12px; text-decoration:none; font-size:15.5px; font-weight:500; }
+  .contact-links svg{ width:19px; height:19px; flex:none; color:var(--accent); }
+  .contact-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    padding:28px; box-shadow:var(--shadow);
+  }
+  .contact-card .eyebrow{ margin-bottom:14px; }
+  .contact-card .roles{ display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+
+  footer{ padding:32px 0; }
+  .foot-row{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; font-size:13px; color:var(--ink-faint); font-family:'IBM Plex Mono',monospace; }
+
+  @media (max-width: 860px){
+    .nav-links{ display:none; }
+    .hero-grid, .about-body, .grid-2, .grid-creds, .contact-grid{ grid-template-columns:1fr; }
+    .pipeline-wrap{ order:-1; }
+    section{ padding:64px 0; }
+    .stat-row{ grid-template-columns:1fr 1fr; }
+  }
+</style>
+
+<header>
+  <div class="wrap nav">
+    <div class="nav-mark">AAKANKSHA<span class="dot">.</span>DESHPANDE</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#credentials">Credentials</a></li>
+    </ul>
+    <a class="nav-cta" href="#contact">Contact &rarr;</a>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Data Engineer &amp; ML Analytics &middot; Galway, Ireland</div>
+        <h1>Aakanksha<br>Deshpande</h1>
+        <p class="role">I build complete data systems: scalable ETL pipelines and cloud migrations (AWS, Microsoft Fabric, Airflow, Kafka, PySpark) paired with ML-powered analytics and explainable AI, from production fraud-detection models to research-grade multi-agent systems. Finishing an MSc in Data Analytics at the University of Galway.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="mailto:aakankshadeshpande527@gmail.com">Email me</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/aakanksha-deshpande" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn btn-ghost" href="https://github.com/aakanksha1500" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn btn-ghost" href="#" id="resume-link">R&eacute;sum&eacute; (PDF)</a>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><div class="num">3+ yrs</div><div class="lbl">data engineering</div></div>
+          <div class="stat"><div class="num">20M+</div><div class="lbl">tx processed / day</div></div>
+          <div class="stat"><div class="num">99%</div><div class="lbl">data accuracy held</div></div>
+          <div class="stat"><div class="num">4.86/5</div><div class="lbl">AI-judge score, thesis</div></div>
+        </div>
+      </div>
+      <div class="pipeline-wrap" aria-hidden="true">
+        <svg viewBox="0 0 420 340" fill="none">
+          <g class="mono">
+
+            <!-- Column 1: IDFC First Bank -->
+            <text x="76" y="14" text-anchor="middle" class="node-label" style="font-weight:600; fill:var(--accent); letter-spacing:.03em;">IDFC FIRST BANK</text>
+            <rect x="16" y="24" width="120" height="30" rx="3" stroke="var(--ink-faint)" fill="var(--surface)"/>
+            <text x="76" y="43" text-anchor="middle" class="node-label">KAFKA &#183; AWS</text>
+            <path d="M76 54 V64" stroke="var(--accent)" stroke-width="2" class="flow"/>
+            <rect x="16" y="64" width="120" height="30" rx="3" stroke="var(--ink-faint)" fill="var(--surface)"/>
+            <text x="76" y="83" text-anchor="middle" class="node-label">FRAUD DETECTION</text>
+            <path d="M76 94 V104" stroke="var(--accent)" stroke-width="2" class="flow"/>
+            <rect x="16" y="104" width="120" height="30" rx="3" stroke="var(--ink-faint)" fill="var(--surface)"/>
+            <text x="76" y="117" text-anchor="middle" class="node-label">NIFI &#183; AIRFLOW</text>
+            <text x="76" y="129" text-anchor="middle" class="node-label">PYSPARK</text>
+            <path d="M76 134 V146" stroke="var(--accent)" stroke-width="2" class="flow"/>
+
+            <!-- Column 2: Capgemini -->
+            <text x="210" y="14" text-anchor="middle" class="node-label" style="font-weight:600; fill:var(--teal); letter-spacing:.03em;">CAPGEMINI</text>
+            <rect x="150" y="24" width="120" height="30" rx="3" stroke="var(--ink-faint)" fill="var(--surface)"/>
+            <text x="210" y="43" text-anchor="middle" class="node-label">ORACLE &#183; SQL</text>
+            <path d="M210 54 V64" stroke="var(--teal)" stroke-width="2" class="flow"/>
+            <rect x="150" y="64" width="120" height="30" rx="3" stroke="var(--ink-faint)" fill="var(--surface)"/>
+            <text x="210" y="83" text-anchor="middle" class="node-label">FABRIC LAKEHOUSE</text>
+            <path d="M210 94 V104" stroke="var(--teal)" stroke-width="2" class="flow"/>
+            <rect x="150" y="104" width="120" height="30" rx="3" stroke="var(--ink-faint)" fill="var(--surface)"/>
+            <text x="210" y="123" text-anchor="middle" class="node-label">FLASK AUTOMATION</text>
+            <path d="M210 134 V146" stroke="var(--teal)" stroke-width="2" class="flow"/>
+
+            <!-- Grafana Monitoring: shared step, IDFC + Capgemini only (not thesis) -->
+            <rect x="16" y="146" width="254" height="30" rx="3" stroke="var(--ink-faint)" stroke-dasharray="3 3" fill="var(--surface)"/>
+            <text x="143" y="165" text-anchor="middle" class="node-label" style="letter-spacing:.03em;">GRAFANA MONITORING</text>
+            <path d="M76 176 V186" stroke="var(--accent)" stroke-width="2" class="flow"/>
+            <path d="M210 176 V186" stroke="var(--teal)" stroke-width="2" class="flow"/>
+
+            <!-- Column 3: MSc Thesis (no Grafana step, flows straight to shared infra layer) -->
+            <text x="344" y="14" text-anchor="middle" class="node-label" style="font-weight:600; fill:var(--good); letter-spacing:.03em;">MSC THESIS</text>
+            <rect x="284" y="24" width="120" height="30" rx="3" stroke="var(--ink-faint)" fill="var(--surface)"/>
+            <text x="344" y="43" text-anchor="middle" class="node-label">MULTI-AGENT LLM</text>
+            <path d="M344 54 V64" stroke="var(--good)" stroke-width="2" class="flow"/>
+            <rect x="284" y="64" width="120" height="30" rx="3" stroke="var(--ink-faint)" fill="var(--surface)"/>
+            <text x="344" y="83" text-anchor="middle" class="node-label">EXPLAINABLE AI</text>
+            <path d="M344 94 V104" stroke="var(--good)" stroke-width="2" class="flow"/>
+            <rect x="284" y="104" width="120" height="30" rx="3" stroke="var(--ink-faint)" fill="var(--surface)"/>
+            <text x="344" y="123" text-anchor="middle" class="node-label">SHAP &#183; RAG</text>
+            <path d="M344 134 V186" stroke="var(--good)" stroke-width="2" class="flow"/>
+
+            <!-- Shared infra layer, underpins all three branches -->
+            <rect x="16" y="186" width="388" height="28" rx="3" stroke="var(--ink-faint)" stroke-dasharray="3 3" fill="var(--surface)"/>
+            <text x="210" y="204" text-anchor="middle" class="node-label" style="letter-spacing:.03em;">DOCKER &#183; KUBERNETES &#183; TERRAFORM</text>
+
+            <path d="M76 214 V226" stroke="var(--accent)" stroke-width="2" class="flow"/>
+            <path d="M210 214 V226" stroke="var(--teal)" stroke-width="2" class="flow"/>
+            <path d="M344 214 V226" stroke="var(--good)" stroke-width="2" class="flow"/>
+
+            <rect x="16" y="226" width="120" height="30" rx="15" stroke="var(--accent)" stroke-width="1.6" fill="var(--surface)"/>
+            <text x="76" y="245" text-anchor="middle" class="node-label" style="fill:var(--accent); font-weight:600;">99% ACCURACY</text>
+
+            <rect x="150" y="226" width="120" height="30" rx="15" stroke="var(--teal)" stroke-width="1.6" fill="var(--surface)"/>
+            <text x="210" y="245" text-anchor="middle" class="node-label" style="fill:var(--teal); font-weight:600;">70% FASTER QA</text>
+
+            <rect x="284" y="226" width="120" height="30" rx="15" stroke="var(--good)" stroke-width="1.6" fill="var(--surface)"/>
+            <text x="344" y="245" text-anchor="middle" class="node-label" style="fill:var(--good); font-weight:600;">4.86/5 AI-JUDGE</text>
+
+            <!-- Convergence -->
+            <path d="M76 256 L 208 284" stroke="var(--accent)" stroke-width="1.6" class="flow"/>
+            <path d="M210 256 V284" stroke="var(--teal)" stroke-width="1.6" class="flow"/>
+            <path d="M344 256 L 212 284" stroke="var(--good)" stroke-width="1.6" class="flow"/>
+
+            <rect x="85" y="284" width="250" height="44" rx="22" stroke="var(--ink)" stroke-width="1.8" fill="var(--surface)"/>
+            <text x="210" y="310" text-anchor="middle" class="node-label" style="fill:var(--ink); font-weight:600; letter-spacing:.02em;">DATA ENGINEER &amp; ML ANALYTICS</text>
+            <circle cx="97" cy="294" r="3" fill="var(--accent)"/>
+            <circle cx="97" cy="306" r="3" fill="var(--teal)"/>
+            <circle cx="97" cy="318" r="3" fill="var(--good)"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="band alt">
+    <div class="wrap about-body">
+      <div>
+        <div class="eyebrow">About</div>
+        <p>I like the moment a pipeline goes from "seventeen different systems reporting seventeen different truths" to one number everyone trusts. That's what I spent a year and a half doing at IDFC First Bank, migrating a real-time Account Aggregator platform to AWS and building the fraud-detection layer on top of it.</p>
+        <p>Before that, at Capgemini, I worked on the less glamorous, higher-stakes job of migrating a client's Oracle systems into Microsoft Fabric, the kind of project where "boring and reliable" is the highest compliment. Somewhere in between, I got curious about what happens after the pipeline runs, which is what sent me back to Galway for an MSc in Data Analytics.</p>
+      </div>
+      <div class="now-card">
+        <div class="eyebrow">Currently</div>
+        <ul>
+          <li>MSc Computer Science - Data Analytics, University of Galway (2025-2026)</li>
+          <li>Researching explainable ML: a multi-agent financial advisor for my thesis</li>
+          <li>Open to Data Engineer / Cloud Data Engineer / Data Analyst roles, Ireland</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Experience</div>
+        <h2>Three years of production pipelines, two companies, one recurring theme</h2>
+        <p>Make the data trustworthy first; the dashboards and the decisions follow.</p>
+      </div>
+      <div class="timeline">
+        <div class="job">
+          <div class="job-head">
+            <div><span class="job-title">Data Engineer</span> &#183; <span class="job-org">IDFC First Bank</span></div>
+            <div class="job-dates">FEB 2024 &ndash; AUG 2025</div>
+          </div>
+          <ul>
+            <li>Led the AWS cloud migration of the Account Aggregator platform, improving performance 40% and enabling real-time visibility into 20M+ daily transactions across 17+ aggregator platforms at 99% data accuracy.</li>
+            <li>Built scalable, real-time ETL pipelines using AWS, Apache NiFi, Airflow, Kafka, PySpark and SQL, cutting data latency 50% and improving pipeline performance 45%.</li>
+            <li>Engineered real-time fraud-detection pipelines to flag and freeze risky accounts, increasing the fraud detection rate 60%.</li>
+            <li>Designed and maintained Grafana monitoring dashboards giving senior management real-time visibility into pipeline health and anomalies.</li>
+          </ul>
+        </div>
+        <div class="job">
+          <div class="job-head">
+            <div><span class="job-title">Data Analyst - Data Engineering & Cloud Migration</span> &#183; <span class="job-org">Capgemini</span></div>
+            <div class="job-dates">JUL 2022 &ndash; FEB 2024</div>
+          </div>
+          <ul>
+            <li>Migrated ETL workflows from Oracle source systems to Microsoft Fabric, building Fabric pipelines and PySpark/Spark notebooks as part of a data-platform modernization initiative.</li>
+            <li>Designed and automated ETL workflows using Apache NiFi, Airflow, Python and SQL for downstream analytics and client reporting.</li>
+            <li>Engineered transformation logic, validation checks and centralized Data Lake structures, improving data consistency and analytics performance.</li>
+            <li>Developed a scalable Flask-based Test Data Generator and SQL conversion engine, cutting manual test-data creation 70%; resolved 50+ critical production incidents, reducing recurrence 25%.</li>
+          </ul>
+        </div>
+        <div class="job minor">
+          <div class="job-head">
+            <div><span class="job-title">Graduate Teaching Assistant</span> &#183; <span class="job-org">University of Galway</span></div>
+            <div class="job-dates">SEPT 2025 &ndash; PRESENT</div>
+          </div>
+          <ul>
+            <li>One-to-one lab support and grading for Java Programming and Java Web Applications, alongside the MSc.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="band alt">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Projects</div>
+        <h2>Research work, and what's next on the bench</h2>
+        <p>Completed academic/research work, plus the portfolio builds currently in progress, labeled honestly either way.</p>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-top"><h3>Multi-Agent Financial Decision Support</h3><span class="pill done">COMPLETED</span></div>
+          <div class="card-meta">MSc Thesis &#183; University of Galway</div>
+          <p>A multi-agent conversational financial advisor (5 specialist agents + hierarchical orchestrator) reaching 1.00 intent-routing accuracy and a 4.86/5 AI-judge score. Hybrid rule-based + ML risk classifier (94–95% tier accuracy) with a SHAP-based explainability and hallucination-control stack, lifting grounded-answer accuracy from 0% to 65.9% on FinQA Verified.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">ML</span><span class="tag">SHAP</span><span class="tag">RAG</span></div>
+        </div>
+        <div class="card">
+          <div class="card-top"><h3>Multimodal Sentiment Analysis, OCR Ensemble</h3><span class="pill done">COMPLETED</span></div>
+          <div class="card-meta">Research Paper &#183; University of Galway</div>
+          <p>Parameter-efficient trimodal sentiment classifier (DistilBERT+LoRA, EfficientNet-B0, OCR ensemble), fine-tuning only 7.6% of parameters. 86.45% weighted F1 on MVSA-Single, ahead of six prior published approaches, via ablation study and class-imbalance mitigation.</p>
+          <div class="tags"><span class="tag">DistilBERT</span><span class="tag">LoRA</span><span class="tag">OCR</span></div>
+        </div>
+        <div class="card">
+          <div class="card-top"><h3>RAG-Based QnA: Tech Arena 2025</h3><span class="pill done">COMPLETED</span></div>
+          <div class="card-meta">Huawei Ireland Research Center &#183; Competition</div>
+          <p>Retrieval-augmented QnA pipeline optimizing open-source LLMs (Gemma, Llama, Qwen) for accuracy and latency under CPU-only, offline compute constraints, scored on a 60% accuracy / 40% latency leaderboard.</p>
+          <div class="tags"><span class="tag">RAG</span><span class="tag">LLMs</span><span class="tag">Offline inference</span></div>
+        </div>
+        <!-- <div class="card">
+          <div class="card-top"><h3>End-to-End AWS ETL Pipeline</h3><span class="pill plan">IN PROGRESS</span></div>
+          <div class="card-meta">Personal build · S3 → Athena/Redshift</div>
+          <p>Airflow-orchestrated batch pipeline with Terraform-provisioned infrastructure, built to name specific AWS services publicly, end to end.</p>
+          <div class="tags"><span class="tag">AWS</span><span class="tag">Airflow</span><span class="tag">Terraform</span></div>
+        </div>
+        <div class="card">
+          <div class="card-top"><h3>Containerized ML Deployment + CI/CD</h3><span class="pill plan">IN PROGRESS</span></div>
+          <div class="card-meta">Personal build · Docker + Kubernetes</div>
+          <p>Deploying the thesis risk-classifier behind a FastAPI service on Kubernetes, with GitHub Actions handling build, test and deploy.</p>
+          <div class="tags"><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">CI/CD</span></div>
+        </div> -->
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Skills</div>
+        <h2>The toolkit, grouped the way I actually use it</h2>
+      </div>
+      <div class="skill-groups">
+        <div class="skill-group">
+          <h4>Cloud &amp; Data Platforms</h4>
+          <div class="chip-row">
+            <span class="chip">AWS</span><span class="chip">Microsoft Fabric</span><span class="chip">Azure Data Factory</span><span class="chip">Azure Fundamentals (AZ-900)</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Data Engineering</h4>
+          <div class="chip-row">
+            <span class="chip">ETL Pipeline Design</span><span class="chip">Apache Airflow</span><span class="chip">Apache NiFi</span><span class="chip">Kafka</span><span class="chip">Hadoop</span><span class="chip">Data Lake / Lakehouse</span><span class="chip">Data Modeling</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>DevOps &amp; Infrastructure</h4>
+          <div class="chip-row">
+            <span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">Terraform</span><span class="chip">Jenkins CI/CD</span><span class="chip">Linux</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Languages &amp; Databases</h4>
+          <div class="chip-row">
+            <span class="chip">Python</span><span class="chip">SQL</span><span class="chip">PySpark</span><span class="chip">R</span><span class="chip">Java (familiar)</span><span class="chip">MySQL</span><span class="chip">Grafana</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>ML, Analytics &amp; Collaboration</h4>
+          <div class="chip-row">
+            <span class="chip">Machine Learning</span><span class="chip">NLP</span><span class="chip">Model Explainability (SHAP)</span><span class="chip">Statistical Analysis</span><span class="chip">Agile / Scrum</span><span class="chip">Stakeholder Communication</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREDENTIALS -->
+  <section id="credentials" class="band alt">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Credentials</div>
+        <h2>Education &amp; certifications</h2>
+      </div>
+      <div class="grid-creds">
+        <div>
+          <h4 class="mono" style="font-size:12.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-faint);margin:0 0 14px;">Education</h4>
+          <div class="cred-list">
+            <div class="cred"><div class="yr">2025&ndash;26</div><div><div class="name">MSc Computer Science - Data Analytics</div><div class="sub">University of Galway &#183; Expected 1:1</div></div></div>
+            <div class="cred"><div class="yr">2018&ndash;22</div><div><div class="name">BE, Information Technology</div><div class="sub">Mumbai University &#183; Result: 1:1</div></div></div>
+          </div>
+        </div>
+        <div>
+          <h4 class="mono" style="font-size:12.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-faint);margin:0 0 14px;">Certifications</h4>
+          <div class="cred-list">
+            <div class="cred"><div class="yr">AWS</div><div><div class="name">AWS Cloud Practitioner</div><div class="sub">Training &amp; Certification</div></div></div>
+            <div class="cred"><div class="yr">AZ-900</div><div><div class="name">Microsoft Certified: Azure Fundamentals</div></div></div>
+            <div class="cred"><div class="yr">MSFT</div><div><div class="name">Microsoft AI Classroom Series</div></div></div>
+            <div class="cred"><div class="yr">COURSERA</div><div><div class="name">Python for Everybody Specialization</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <div class="eyebrow">Get in touch</div>
+        <h2>Let's talk data pipelines, cloud migrations, or explainable AI.</h2>
+        <div class="contact-links">
+          <a href="mailto:aakankshadeshpande527@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>
+            aakankshadeshpande527@gmail.com
+          </a>
+          <a href="tel:+353894069038">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .6 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.5 2.9.6a2 2 0 0 1 1.7 2Z"/></svg>
+            +353 89 406 9038
+          </a>
+          <a href="www.linkedin.com/in/aakanksha-deshpande" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V8h4v1.6A6 6 0 0 1 16 8Z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            linkedin.com/in/aakankshadeshpande
+          </a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="eyebrow">Status</div>
+        <div style="font-size:15px;">Open to work &#183; Galway &amp; Dublin, Ireland</div>
+        <div class="roles">
+          <span class="tag">Data Engineer</span><span class="tag">Cloud Data Engineer</span><span class="tag">Data Analyst</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="band">
+  <div class="wrap foot-row">
+    <span>&copy; 2026 Aakanksha Deshpande</span>
+    <span>Galway, Ireland</span>
+  </div>
+</footer>
+
+<script>
+  // Resume link: swap the href below once a hosted PDF/Drive link is available.
+  document.getElementById('resume-link').addEventListener('click', function(e){
+    if (this.getAttribute('href') === '#') {
+      e.preventDefault();
+      alert('Add your hosted resume link (Google Drive / Dropbox, set to "Anyone with the link") and this button will open it.');
+    }
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
